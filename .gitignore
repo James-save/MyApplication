@@ -1,21 +1,14 @@
-# Android Studio 相關檔案
 *.iml
 .idea/
 .gradle/
 /local.properties
 /build/
 /captures/
-
-# 生成嘅應用檔案
 *.apk
 *.aar
 *.ap_
 *.aab
-
-# 日誌同臨時檔案
 *.log
 *.db
 /temp_data/
-
-# macOS 系統檔案
 .DS_Store
