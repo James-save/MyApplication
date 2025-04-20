@@ -1,0 +1,63 @@
+#include <WiFi.h>
+#include "BluetoothSerial.h"
+
+// WiFi credentials
+const char* ssid = "Your_SSID";       // 改成你嘅 Wi-Fi SSID
+const char* password = "Your_PASSWORD"; // 改成你嘅 Wi-Fi 密碼
+
+BluetoothSerial SerialBT;  // Bluetooth object
+
+void setup() {
+  Serial.begin(115200);               // Initialize Serial for debugging
+  SerialBT.begin("RobotCarArm");      // Start Bluetooth with the name "RobotCarArm" (同 Android app 匹配)
+
+  // Connect to WiFi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+  Serial.print("ESP32 IP Address: ");
+  Serial.println(WiFi.localIP());     // 喺 Serial Monitor 顯示 IP 地址，喺 Android app 用
+}
+
+void loop() {
+  // 檢查藍牙連繫
+  if (SerialBT.available()) {
+    char command = SerialBT.read(); // 讀取單字符
+    Serial.print("Received via Bluetooth: ");
+    Serial.println(command);
+
+    // 根據指令控制 robot car
+    switch (command) {
+      case 'U':
+        Serial.println("Moving forward");
+        // 喺呢度加你嘅 motor 控制代碼，例如：
+        // digitalWrite(MOTOR_PIN_FORWARD, HIGH);
+        SerialBT.println("Moving forward");
+        break;
+      case 'D':
+        Serial.println("Moving backward");
+        // digitalWrite(MOTOR_PIN_BACKWARD, HIGH);
+        SerialBT.println("Moving backward");
+        break;
+      case 'L':
+        Serial.println("Turning left");
+        // digitalWrite(MOTOR_PIN_LEFT, HIGH);
+        SerialBT.println("Turning left");
+        break;
+      case 'R':
+        Serial.println("Turning right");
+        // digitalWrite(MOTOR_PIN_RIGHT, HIGH);
+        SerialBT.println("Turning right");
+        break;
+      default:
+        Serial.println("Unknown command");
+        SerialBT.println("Error: Unknown command");
+        break;
+    }
+  }
+
+  delay(100); // 避免 loop 過快
+}
