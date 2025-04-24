@@ -1,0 +1,13 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath libs.gradle.v810
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

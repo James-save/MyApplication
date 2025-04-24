@@ -6,111 +6,25 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- 上半部分：實時熱成像圖 -->
-    <ImageView
-        android:id="@+id/imageViewHeatmap"
+    <!-- 標籤欄 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#CCCCCC"
-        android:contentDescription="實時熱成像圖"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5" />
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
 
-    <!-- 下半部分：包含兩個圓形圖標和按鈕 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomLayout"
+    <!-- ViewPager2 用來切換頁面 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/imageViewHeatmap"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- 左上角的圓形圖標 -->
-        <ImageView
-            android:id="@+id/leftCircleIcon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_background"
-            android:contentDescription="left label"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp" />
-
-        <!-- 右上角的圓形圖標 -->
-        <ImageView
-            android:id="@+id/rightCircleIcon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_background"
-            android:contentDescription="right label"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp" />
-
-        <!-- 上按鈕 -->
-        <Button
-            android:id="@+id/buttonUp"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_button_background"
-            android:text="↑"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@id/buttonCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="50dp" />
-
-        <!-- 中心按鈕（作為參考點） -->
-        <View
-            android:id="@+id/buttonCenter"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- 下按鈕 -->
-        <Button
-            android:id="@+id/buttonDown"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_button_background"
-            android:text="↓"
-            android:textColor="#FFFFFF"
-            app:layout_constraintTop_toBottomOf="@id/buttonCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="50dp" />
-
-        <!-- 左按鈕 -->
-        <Button
-            android:id="@+id/buttonLeft"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_button_background"
-            android:text="←"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@id/buttonCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="50dp" />
-
-        <!-- 右按鈕 -->
-        <Button
-            android:id="@+id/buttonRight"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/circle_button_background"
-            android:text="→"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@id/buttonCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="50dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
